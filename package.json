@@ -8,7 +8,7 @@
   },
   "main": "webpack/webpack.config.dev.js",
   "scripts": {
-    "build:preview": "webpack --config webpack/webpack.config.prod.js",
+    "build:preview": "webpack --config webpack/webpack.config.dev.js",
     "build:production": "webpack --config webpack/webpack.config.prod.js",
     "lint": "./node_modules/.bin/eslint 'source/js/*.js' --ignore-pattern node_modules/"
   },
