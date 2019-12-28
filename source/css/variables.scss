@@ -6,17 +6,15 @@
 // To avoid errors, variables names should not be changed or deleted, and be
 // sure to leave the colons (:) and semi-colons (;) in place.
 
-$accent-color: null;
+$accent-color: #F37054;
 $content-background-color: null; // main text area background color
 $secondary-background-color: null; // only for modern theme
 
 // Declare the theme: modern/classic
-$theme: modern;
+$theme: classic;
 
 // Declare the navbar color style: normal/accent
-$navbar: normal;
-
-
+$navbar: accent;
 
 // Pre-defined fonts
 // -----------------------------------------------------------------------------
@@ -68,10 +66,10 @@ $print-entry-image-display: all; // first | all
 // Themes
 // -----------------------------------------------------------------------------
 // Declare theme variables
-$quire-primary-font: null; // body and menu text
-$quire-headings-font: null; // headings
-$quire-footnotes-font: null; // footnotes and page backmatter
-$quire-navigation-font: null; // navbar and next/prev buttons
+$quire-primary-font: $noto-serif; // body and menu text
+$quire-headings-font: $noto-serif; // headings
+$quire-footnotes-font: $noto-sans; // footnotes and page backmatter
+$quire-navigation-font: $noto-sans; // navbar and next/prev buttons
 
 @if $theme == classic {
   // Classic Theme
@@ -119,8 +117,8 @@ $quire-navbar-text-color: null;
 // Cover colors
 // -----------------------------------------------------------------------------
 // Declare cover gradient colors (make them the same for a solid background)
-$quire-cover-color-1: null;
-$quire-cover-color-2: null;
+$quire-cover-color-1: $accent-color;
+$quire-cover-color-2: $accent-color;
 
 @if $theme == classic {
   $quire-cover-color-1: $accent-color !default;
