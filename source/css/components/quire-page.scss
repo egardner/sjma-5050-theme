@@ -153,20 +153,21 @@ html {
 
     .container {
       @media screen and (max-width: $tablet) {
-        margin-left: 0;
-        margin-right: 0;
+        // margin-left: 0;
+        // margin-right: 0;
       }
       @media print {
         margin: 0;
       }
 
       .content {
-        margin-top: 45px;
-        padding: 2.5rem 2.5rem;
+        // margin-top: 45px;
+        // padding: 2.5rem 2.5rem;
+        padding: 1rem;
         background-color: $content-background-color;
 
         @media screen and (max-width: $tablet) {
-          padding: 1.5rem 1.25rem;
+          // padding: 1.5rem 1.25rem;
         }
 
         @media print {
@@ -212,12 +213,6 @@ html {
               color: $print-text-color;
             }
             border-width: 0 0 1px;
-          }
-          tbody {
-            td {
-              border-left: 4px solid transparent;
-              border-right: 4px solid transparent;
-            }
           }
         }
 
@@ -322,7 +317,7 @@ html {
           font-family: $quire-footnotes-font;
           font-size: 0.875rem;
           line-height: 1.6;
-          padding-top: 1px;
+          padding-top: 0;
 
           h2,
           h3,
@@ -514,15 +509,15 @@ html {
   background-repeat: no-repeat;
   background-position: cover;
   text-align: center;
-  -webkit-animation: fadeIn 2s;
+  -webkit-animation: fadeIn 1s;
   /* Safari, Chrome and Opera > 12.1 */
-  -moz-animation: fadeIn 2s;
+  -moz-animation: fadeIn 1s;
   /* Firefox < 16 */
-  -ms-animation: fadeIn 2s;
+  -ms-animation: fadeIn 1s;
   /* Internet Explorer */
-  -o-animation: fadeIn 2s;
+  -o-animation: fadeIn 1s;
   /* Opera < 12.1 */
-  animation: fadeIn 2s;
+  animation: fadeIn 1s;
 
   @media print {
     background-color: transparent;
@@ -683,6 +678,7 @@ html {
 
 .quire-page__content {
   // Overrides to Bulma's .content styles where needed.
+  padding-bottom: 0;
   .content {
     a {
       @media print {
@@ -718,7 +714,9 @@ html {
     }
 
     .footnote-ref a,
-    a.footnote-return {
+    a.footnote-return,
+    a.footnote-backref,
+    a.footnote-ref {
       border-bottom-width: 0;
       font-weight: bold;
       @media print {
@@ -781,6 +779,11 @@ html {
       font-style: italic;
 
       em {
+        font-style: normal;
+      }
+      
+      // footnote numbers in blockquotes should be roman
+      sup.footnote-ref {
         font-style: normal;
       }
 

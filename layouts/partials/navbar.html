@@ -50,7 +50,7 @@
       
       {{- range $index, $element := $pages -}}
         {{- if eq $index  0 -}}
-          {{- $.Scratch.Set "homepage" .UniqueID -}}
+          {{- $.Scratch.Set "homepage" .File.UniqueID -}}
           {{- $.Scratch.Set "homepage-link" .Permalink -}}
         {{- end -}}
         {{- if eq $index  1 -}}
@@ -58,7 +58,7 @@
         {{- end -}}        
       {{- end -}}
 
-      {{- if eq .UniqueID ($.Scratch.Get "homepage") -}}
+      {{- if eq .File.UniqueID ($.Scratch.Get "homepage") -}}
 
         <li class="quire-navbar-page-controls__item quire-home-page">
           <a href='{{ $.Scratch.Get "secondpage-link" | relURL }}' rel="next">
@@ -82,7 +82,7 @@
         {{- if gt (len $previousPages) 0 -}}
         {{- range last 1 $previousPages -}}
           <li class="quire-navbar-page-controls__item quire-previous-page">
-            <a href='{{ .Permalink | relURL }}' rel="previous">
+            <a id="js-prev" href='{{ .Permalink | relURL }}' rel="previous">
               <span class="visually-hidden">Previous Page: </span>
               <svg class="left-icon remove-from-epub">
                 <switch>
@@ -98,7 +98,7 @@
         {{- end -}}
         {{- end -}}
 
-        {{/* <li class="quire-navbar-page-controls__item quire-home-page">
+        <li class="quire-navbar-page-controls__item quire-home-page">
           <a href='{{ $.Scratch.Get "homepage-link" | relURL }}' rel='home'>
             <span class="visually-hidden">Home Page: </span>
             <span class="quire-navbar-button home-button">
@@ -106,19 +106,19 @@
                 <switch>
                   <use xlink:href="#home-icon"></use>
                   <foreignObject width="32" height="32">
-                      <img src="{{ $imgDir | relURL }}/icons/rewind.png" alt="Home Page" />
+                      <img src="{{ $imgDir | relURL }}/icons/home.png" alt="Home Page" />
                   </foreignObject>
                 </switch>
               </svg>
             </span>
           </a>
-        </li> */}}
+        </li>
 
         {{- $nextPages := where $pages "Weight" "gt" .Weight -}}
         {{- if gt (len $nextPages) 0 -}}
         {{- range first 1 $nextPages -}}
         <li class="quire-navbar-page-controls__item quire-next-page">
-          <a href='{{ .Permalink | relURL }}' rel='next'>
+          <a id="js-next" href='{{ .Permalink | relURL }}' rel='next'>
             <span class="visually-hidden">Next Page: </span>
             {{- with .Params.label }}{{ . }}{{ $.Site.Params.pageLabelDivider }}{{ end }}{{- if .Params.short_title }}{{ .Params.short_title | markdownify }} {{ else }}{{ .Title | markdownify | truncate 34 }}{{ end -}}
             <svg class="remove-from-epub">
@@ -158,16 +158,4 @@
       </button>
     </div>
   </nav>
-
-  {{/* <div class="quire-progress-bar">
-    {{ $len := len $pages }}
-    {{ range $index, $element := $pages }}
-      {{ if eq . $.Page }}
-        <div style="width: calc(100% * ({{ add $index 1 }} / {{ $len }}));">
-          <span>{{ add $index 1 }}/{{ $len }}</span>
-        </div>
-      {{ end }}
-    {{ end }}
-  </div> */}}
-
 </div>

@@ -16,6 +16,8 @@ $theme: classic;
 // Declare the navbar color style: normal/accent
 $navbar: accent;
 
+
+
 // Pre-defined fonts
 // -----------------------------------------------------------------------------
 // This theme includes three embedded, open license fonts, and also uses
@@ -66,10 +68,14 @@ $print-entry-image-display: all; // first | all
 // Themes
 // -----------------------------------------------------------------------------
 // Declare theme variables
-$quire-primary-font: $noto-serif; // body and menu text
-$quire-headings-font: $noto-serif; // headings
-$quire-footnotes-font: $noto-sans; // footnotes and page backmatter
-$quire-navigation-font: $noto-sans; // navbar and next/prev buttons
+// $quire-primary-font: $noto-serif; // body and menu text
+// $quire-headings-font: $noto-serif; // headings
+// $quire-footnotes-font: $noto-sans; // footnotes and page backmatter
+// $quire-navigation-font: $noto-sans; // navbar and next/prev buttons
+$quire-primary-font: $noto-serif;
+$quire-headings-font: "Helvetica", "Arial", sans-serif;
+$quire-footnotes-font: "Helvetica", "Arial", sans-serif;
+$quire-navigation-font: "Helvetica", "Arial", sans-serif;
 
 @if $theme == classic {
   // Classic Theme

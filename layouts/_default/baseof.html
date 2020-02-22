@@ -28,7 +28,7 @@
       </div>
 
       <div class="quire__primary" id="{{ with .Section }}{{ . | urlize }}-{{ end }}{{ .File.BaseFileName | lower }}">
-        {{ partial "navbar.html" . }}
+        {{ partial "sjma-navbar.html" . }}
 
         {{ block "main" . }}
 
