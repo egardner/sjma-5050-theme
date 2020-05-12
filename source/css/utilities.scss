@@ -91,22 +91,26 @@
 
 // General Bulma Overrides
 // -----------------------------------------------------------------------------
-.hero-body .container.is-fluid {
-  display: inline-block;
-  max-width: none;
-  background: $off-black-semi-transparent;
-  padding: 20px;
-  position: absolute;
-  bottom: 10%;
-  margin-left: 0;
-  left: 0;
-}
+// .hero-body .container.is-fluid {
+//   display: inline-block;
+//   max-width: none;
+//   background: $off-black-semi-transparent;
+//   padding: 20px;
+//   position: absolute;
+//   bottom: 10%;
+//   margin-left: 0;
+//   left: 0;
+// }
 
-.hero-body,
-.section,
-.footer {
-  padding-left: 0;
-  padding-right: 0;
+// .hero-body,
+// .section,
+// .footer {
+//   padding-left: 0;
+//   padding-right: 0;
+// }
+
+.hero-body {
+  padding: 3rem 1.5rem 1.5rem;
 }
 
 // Utility Classes
@@ -147,46 +151,11 @@ sub {
     margin-top: 1em;
   }
 }
+
 // @keyframes
 //-------------------------------------------------------
 // fadein
 @keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-/* Firefox < 16 */
-@-moz-keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-/* Safari, Chrome and Opera > 12.1 */
-@-webkit-keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-/* Internet Explorer */
-@-ms-keyframes fadeIn {
-  from {
-    opacity: 0;
-  }
-  to {
-    opacity: 1;
-  }
-}
-/* Opera < 12.1 */
-@-o-keyframes fadeIn {
   from {
     opacity: 0;
   }
@@ -204,81 +173,9 @@ sub {
     opacity: 0;
   }
 }
-/* Firefox < 16 */
-@-moz-keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-/* Safari, Chrome and Opera > 12.1 */
-@-webkit-keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-/* Internet Explorer */
-@-ms-keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
-/* Opera < 12.1 */
-@-o-keyframes fadeOut {
-  from {
-    opacity: 1;
-  }
-  to {
-    opacity: 0;
-  }
-}
 
 // slideFromRight
 @keyframes slideFromRight {
-  from {
-    right: -100em;
-  }
-  to {
-    right: 0;
-  }
-}
-/* Firefox < 16 */
-@-moz-keyframes slideFromRight {
-  from {
-    right: -100em;
-  }
-  to {
-    right: 0;
-  }
-}
-/* Safari, Chrome and Opera > 12.1 */
-@-webkit-keyframes slideFromRight {
-  from {
-    right: -100em;
-  }
-  to {
-    right: 0;
-  }
-}
-/* Internet Explorer */
-@-ms-keyframes slideFromRight {
-  from {
-    right: -100em;
-  }
-  to {
-    right: 0;
-  }
-}
-/* Opera < 12.1 */
-@-o-keyframes slideFromRight {
   from {
     right: -100em;
   }
@@ -296,42 +193,6 @@ sub {
     left: 0;
   }
 }
-/* Firefox < 16 */
-@-moz-keyframes slideFromLeft {
-  from {
-    left: -100em;
-  }
-  to {
-    left: 0;
-  }
-}
-/* Safari, Chrome and Opera > 12.1 */
-@-webkit-keyframes slideFromLeft {
-  from {
-    left: -100em;
-  }
-  to {
-    left: 0;
-  }
-}
-/* Internet Explorer */
-@-ms-keyframes slideFromLeft {
-  from {
-    left: -100em;
-  }
-  to {
-    left: 0;
-  }
-}
-/* Opera < 12.1 */
-@-o-keyframes slideFromLeft {
-  from {
-    left: -100em;
-  }
-  to {
-    left: 0;
-  }
-}
 
 // Required by HTML Template Polyfill for older IE compatibility
 // -----------------------------------------------------------------------------
@@ -342,4 +203,15 @@ template {
 
 html {
   overflow-y: auto;
+}
+
+.littlefoot-footnote {
+    &__content {
+        * { all: unset; }
+
+        *::before {
+            content: none !important;
+        }
+    }
+
 }

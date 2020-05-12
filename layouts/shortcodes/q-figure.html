@@ -220,7 +220,7 @@ we start with media figures
       <img
       id='{{ with .Get "id" }}{{ . | urlize }}{{ end }}'
       class="quire-figure__image" 
-      src='{{ with .Get "src"}}{{ printf "%s/%s" ($.Scratch.Get "imageDir") . | relURL }}{{ end }}'
+      src='{{ with .Get "src"}}{{ printf "%s/%s" ($.Scratch.Get "imageDir") . | relURL }}{{ end }}?nf_resize=fit&w=1000'
       alt='{{ with .Get "alt" }}{{ . }}{{ end }}' />
 
   {{ else }}
@@ -237,7 +237,7 @@ we start with media figures
   <img 
      class="quire-figure__image"  
      id='{{ with .Get "id" }}{{ . | urlize }}{{ end }}'
-     src='{{ with .Get "src"}}{{ printf "%s/%s" ($.Scratch.Get "imageDir") . | relURL }}{{ end }}'
+     src='{{ with .Get "src"}}{{ printf "%s/%s" ($.Scratch.Get "imageDir") . | relURL }}{{ end }}?nf_resize=fit&w=1000'
      alt='{{ if $.Get "alt" }}{{ $.Get "alt" }}{{ end }}' />
 
   {{ end }}
@@ -507,7 +507,8 @@ render the figure from matching values found ther
         <img
         id='{{ .id }}'
         class="quire-figure__image" 
-        src='{{ printf "%s/%s" ($.Scratch.Get "imageDir") .src | relURL }}' 
+        src='{{ printf "%s/%s" ($.Scratch.Get "imageDir") .src | relURL }}?nf_resize=fit&w=1000'
+        loading="lazy"
         alt='{{ with .alt }}{{ . }}{{ end }}' />
       {{ end }}
   {{ else }}
@@ -519,7 +520,8 @@ render the figure from matching values found ther
     <img 
        class="quire-figure__image"  
        id='{{ .id }}'
-       src='{{ printf "%s/%s" ($.Scratch.Get "imageDir") .src | relURL }}'
+       src='{{ printf "%s/%s" ($.Scratch.Get "imageDir") .src | relURL }}??nf_resize=fit&w=1000'
+       loading="lazy"
        alt='{{ with .alt }}{{ . }}{{ end }}' />
 
   {{ end }}

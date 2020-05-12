@@ -6,7 +6,8 @@
 // To avoid errors, variables names should not be changed or deleted, and be
 // sure to leave the colons (:) and semi-colons (;) in place.
 
-$accent-color: #F37054;
+// $accent-color: #F37054;
+$accent-color: $grey-light;
 $content-background-color: null; // main text area background color
 $secondary-background-color: null; // only for modern theme
 
@@ -14,8 +15,7 @@ $secondary-background-color: null; // only for modern theme
 $theme: classic;
 
 // Declare the navbar color style: normal/accent
-$navbar: accent;
-
+$navbar: normal;
 
 
 // Pre-defined fonts
@@ -39,8 +39,8 @@ $quire-cover-text-scale: 1; // use decimal numbers such as .8 or 1.3
 
 // Menu colors
 // -----------------------------------------------------------------------------
-$quire-menu-color: $off-black;
-$quire-menu-text-color: $white;
+$quire-menu-color: $off-white;
+$quire-menu-text-color: $black;
 
 // Image viewer colors (pop-up figure viewer & entry page viewer)
 // -----------------------------------------------------------------------------
@@ -55,7 +55,8 @@ $quire-hover-color: $light-yellow;
 // -----------------------------------------------------------------------------
 $print-width: 8.5in;
 $print-height: 11in;
-$print-bleed: .125in;
+// $print-bleed: .125in;
+$print-bleed: 0in;
 
 $print-base-font-size: 8.5pt;
 $print-text-color: $black;
@@ -100,9 +101,9 @@ $quire-navigation-font: "Helvetica", "Arial", sans-serif;
 // Navbar
 // -----------------------------------------------------------------------------
 // Declare navbar colors
-$quire-navbar-color: null;
-$quire-navbar-hover-color: null;
-$quire-navbar-text-color: null;
+$quire-navbar-color: $black;
+$quire-navbar-hover-color: $white;
+$quire-navbar-text-color: $white;
 
 @if $navbar == accent {
   // Accent Navbar
@@ -123,16 +124,7 @@ $quire-navbar-text-color: null;
 // Cover colors
 // -----------------------------------------------------------------------------
 // Declare cover gradient colors (make them the same for a solid background)
-$quire-cover-color-1: $accent-color;
-$quire-cover-color-2: $accent-color;
-
-@if $theme == classic {
-  $quire-cover-color-1: $accent-color !default;
-  $quire-cover-color-2: $red !default;
-} @else {
-  $quire-cover-color-1: $blue !default;
-  $quire-cover-color-2: $accent-color !default;
-}
+$quire-cover-color: $black;
 
 // Layout sizes
 // -----------------------------------------------------------------------------

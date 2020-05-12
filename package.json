@@ -71,6 +71,7 @@
     "leaflet-fullscreen": "^1.0.2",
     "leaflet-iiif": "^3.0.0",
     "leaflet-image": "^0.4.0",
+    "littlefoot": "^3.2.4",
     "lodash": "^4.17.15",
     "lodash.debounce": "^4.0.8",
     "lodash.findindex": "^4.6.0",

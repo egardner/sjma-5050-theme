@@ -43,7 +43,7 @@ Cover page layout. This controls the home page of the publication.
           {{ end }}
         </h1>
 
-        {{ with .Site.Data.publication.reading_line }}
+        {{ with .Site.Data.publication.description.one_line }}
         <p class="reading-line">{{ . | markdownify }}</p>
         {{ end }}
 
@@ -53,8 +53,7 @@ Cover page layout. This controls the home page of the publication.
         {{ else }}
         <span class="visually-hidden">Contributors: </span>
         
-          {{/* List primary contributors unless none are marked as primary
-               in which case list all contributors in publication.yml */}}
+          {{/* List primary contributors, if any are specified */}}
           {{/* ------------------------------------------------------------ */}}
           {{- range .Site.Data.publication.contributor -}}
             {{- if .type -}}
@@ -63,8 +62,6 @@ Cover page layout. This controls the home page of the publication.
           {{- end -}}
           {{ if eq ($.Scratch.Get "type") true }}
             <em>{{ partial "contributor-list.html" (dict "range" .Site.Data.publication.contributor "contributorType" "primary" "listType" "string" "Site" $.Site) }}</em>
-          {{- else -}}
-            <em>{{ partial "contributor-list.html" (dict "range" .Site.Data.publication.contributor "contributorType" "all" "listType" "string" "Site" $.Site) }}</em>
           {{- end -}}        
         {{- end -}}
         </div>

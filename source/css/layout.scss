@@ -22,6 +22,18 @@
 
 // scss-lint:disable NameFormat
 
+@media screen {
+  html {
+    background-color: $black;
+  }
+
+  body {
+    background-color: $white;
+    min-height: 100vh;
+    min-height: -webkit-fill-available;
+  }
+}
+
 // .quire
 // -----------------------------------------------------------------------------
 [hidden] {

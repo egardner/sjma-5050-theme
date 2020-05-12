@@ -21,30 +21,50 @@ NB: This solution makes use of **both** the standard $.Scratch register AND a
 block-scoped .Scratch inside the `range` loop.
 */}}
 
-{{- $.Scratch.Add "index" slice -}}
+{{/* 0. Create an index slice (array) */}}
+{{/* -------------------------------- */}}
+{{ $.Scratch.Add "index" slice }}
+{{ $.Scratch.Add "artists" slice }}
 
-{{- $searchablePages := where .Site.Pages ".Kind" "page" }}
+
+{{/* 1. Determine what is included in the index */}}
+{{/* ------------------------------------------ */}}
+{{ $searchablePages := where .Site.Pages ".Kind" "page" }}
 {{ $searchablePages := where $searchablePages "Params.online" "!=" "false" }}
 {{ $searchablePages := where $searchablePages ".Type" "!=" "data" }}
-{{- $searchablePages := where $searchablePages "Params.search" "!=" "false" -}}
+{{ $searchablePages := where $searchablePages "Params.search" "!=" "false" }}
 
-{{- range $index, $page := $searchablePages -}}
+{{ $artistSections := .Site.Sections }}
+{{ $artistSections := where .Site.Sections ".Title" "!=" "Introduction" }}
+{{ range $artistSections }}
+{{ $.Scratch.Add "artists" ( .Title | lower )  }}
+{{ end }}
 
-{{- .Scratch.Set "pageData" "" -}}
-{{- .Scratch.Set "searchContent" "" -}}
-{{- .Scratch.Set "pageURL" "" -}}
-{{- .Scratch.Set "parentSection" "" -}}
-{{- .Scratch.Set "pageTitle" "" -}}
-{{- .Scratch.Set "pageType" "" -}}
-{{- .Scratch.Set "pageLength" "" -}}
 
-{{- if gt (len $page.Content) 0 -}}
-{{- .Scratch.Set "searchContent" $page.Plain -}}
-{{- .Scratch.Set "pageURL" $page.Permalink -}}
-{{- .Scratch.Set "pageType" $page.Type -}}
-{{- .Scratch.Set "pageLength" $page.WordCount -}}
+{{/* 2. Loop through searchablePages and stash content for the desired fields in block-scoped scratch */}}
+{{/* ------------------------------------------------------------------------------------------------ */}}
+{{ range $index, $page := $searchablePages }}
 
-{{- end -}}
+{{ .Scratch.Set "pageData" "" }}
+{{ .Scratch.Set "searchContent" "" }}
+{{ .Scratch.Set "pageURL" "" }}
+{{ .Scratch.Set "parentSection" "" }}
+{{ .Scratch.Set "pageTitle" "" }}
+{{ .Scratch.Set "pageType" "" }}
+{{ .Scratch.Set "pageLength" "" }}
+
+{{ if gt (len $page.Content) 0 }}
+{{ .Scratch.Set "searchContent" $page.Plain }}
+{{ .Scratch.Set "pageURL" $page.Permalink }}
+{{ .Scratch.Set "pageType" $page.Type }}
+{{ .Scratch.Set "pageLength" $page.WordCount }}
+{{ .Scratch.Set "section" $page.Section }}
+{{ end }}
+
+{{ if and (in ( $.Scratch.Get "artists" ) $page.Section) (eq $page.Type "page" ) }}
+{{ $subPageURL := printf "%s%s/#%s" $.Site.BaseURL $page.Section ( $page.Title | urlize ) }}
+{{ .Scratch.Set "pageURL" $subPageURL }}
+{{ end }}
 
 {{- if $page.Params.label -}}
   {{ .Scratch.Set "pageTitle" (printf "%s%s%s" (string $page.Params.label) .Site.Params.pageLabelDivider $page.Title) }}
@@ -58,8 +78,22 @@ block-scoped .Scratch inside the `range` loop.
   {{ .Scratch.Set "pageFullTitle" (.Scratch.Get "pageTitle") }}
 {{- end -}}
 
-{{- .Scratch.Set "pageData" (dict "id" $index "title" (.Scratch.Get "pageFullTitle") "url" (.Scratch.Get "pageURL") "type" (.Scratch.Get "pageType") "length" (.Scratch.Get "pageLength") "content" (.Scratch.Get "searchContent")) -}}
 
-{{- $.Scratch.Add "index" (.Scratch.Get "pageData") -}}
+{{/* 3. Pull the desired data out of scratch and add it to the index array as a dictionary (hash/object) */}}
+{{/* --------------------------------------------------------------------------------------------------- */}}
+
+{{ $pageTitle := .Scratch.Get "pageFullTitle" }}
+{{ $pageURL := .Scratch.Get "pageURL" }}
+{{ $pageType := .Scratch.Get "pageType" }}
+{{ $pageLength := .Scratch.Get "pageLength" }}
+{{ $section := .Scratch.Get "section" }}
+{{ $content := .Scratch.Get "searchContent" }}
+
+{{ .Scratch.Set "pageData" ( dict "id" $index "title" $pageTitle "url" $pageURL "type" $pageType "length" $pageLength "section" $section "content" $content ) }}
+{{ $.Scratch.Add "index" (.Scratch.Get "pageData") }}
+
 {{- end -}}
-{{- $.Scratch.Get "index" | jsonify -}}
+
+{{/* 4. Spit out the data as a JSON string as the content of the page */}}
+{{/* --------------------------------------------------------------------------------------------------- */}}
+{{ $.Scratch.Get "index" | jsonify }}

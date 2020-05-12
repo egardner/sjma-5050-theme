@@ -1,6 +1,8 @@
 // =============================================================================
 // Application.scss
 // -----------------------------------------------------------------------------
+@import "~littlefoot/dist/littlefoot.css";
+
 @import "~bulma/sass/utilities/initial-variables";
 @import "fonts";
 @import "colors";
@@ -11,11 +13,13 @@
 // This Quire theme is built on the Bulma CSS framework (https://bulma.io/), the
 // following variables are standard in Bulma, but are also used in, and
 // in some cases modified for, Quire as well.
-$gap: 16px;
-$tablet: 500px;
-$desktop: 700px;
-$fullhd: 1344px + (2 * $gap);
-$widescreen: 1152px + (2 * $gap);
+// $gap: 16px;
+$tablet: 600px;
+// $desktop: 900px;
+// $widescreen: 900px + (2 * $gap);
+
+$widescreen-enabled: false;
+$fullhd-enabled: false;
 $box-shadow: 0 2px 3px rgba($off-black, 0.1), 0 0 0;
 
 @import "bulma-components";
