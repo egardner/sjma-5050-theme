@@ -6,8 +6,8 @@
 // To avoid errors, variables names should not be changed or deleted, and be
 // sure to leave the colons (:) and semi-colons (;) in place.
 
-// $accent-color: #F37054;
-$accent-color: $grey-light;
+$accent-color: #F37054;
+// $accent-color: $grey-light;
 $content-background-color: null; // main text area background color
 $secondary-background-color: null; // only for modern theme
 
@@ -101,25 +101,26 @@ $quire-navigation-font: "Helvetica", "Arial", sans-serif;
 // Navbar
 // -----------------------------------------------------------------------------
 // Declare navbar colors
-$quire-navbar-color: $black;
-$quire-navbar-hover-color: $white;
-$quire-navbar-text-color: $white;
+$quire-navbar-color: $white;
+// $quire-navbar-hover-color: darken($quire-navbar-color, 5%);
+$quire-navbar-hover-color: $black;
+$quire-navbar-text-color: $black;
 
-@if $navbar == accent {
-  // Accent Navbar
-  $quire-navbar-color: $accent-color !default;
-  $quire-navbar-hover-color: darken($quire-navbar-color, 5%) !default;
-  $quire-navbar-text-color: $white !default;
-} @else {
-  // Normal Navbar (default)
-  $quire-navbar-color: $white !default;
-  $quire-navbar-hover-color: darken($quire-navbar-color, 5%) !default;
-  @if $theme == classic {
-    $quire-navbar-text-color: lighten($off-black, 20%) !default;
-  } @else {
-    $quire-navbar-text-color: $off-black !default;
-  }
-}
+// @if $navbar == accent {
+//   // Accent Navbar
+//   $quire-navbar-color: $accent-color !default;
+//   $quire-navbar-hover-color: darken($quire-navbar-color, 5%) !default;
+//   $quire-navbar-text-color: $white !default;
+// } @else {
+//   // Normal Navbar (default)
+//   $quire-navbar-color: $white !default;
+//   $quire-navbar-hover-color: darken($quire-navbar-color, 5%) !default;
+//   @if $theme == classic {
+//     $quire-navbar-text-color: lighten($off-black, 20%) !default;
+//   } @else {
+//     $quire-navbar-text-color: $off-black !default;
+//   }
+// }
 
 // Cover colors
 // -----------------------------------------------------------------------------

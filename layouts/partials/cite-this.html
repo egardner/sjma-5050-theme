@@ -14,7 +14,11 @@
     Edit this template with care as it is easy to introduce stray spaces occuring around punctuation.
     
     ***Note***
-    Doesn't currently account for name combinations that might end with a period (Keaton, Alex P., Sammy Davis Jr.) and so in some cases may end up including two periods in a row after contributor lists. I wanted to solve this with something like the following, but the output from a template can't seem to be assigned as to a variable or passed to a function.
+    Doesn't currently account for name combinations that might end with a
+    period (Keaton, Alex P., Sammy Davis Jr.) and so in some cases may end up
+    including two periods in a row after contributor lists. I wanted to solve
+    this with something like the following, but the output from a template
+    can't seem to be assigned as to a variable or passed to a function.
     
     {{ $contributors := template "page-contributors-chicago" .page }}
     {{ $endPunctuation := findRE "[[:punct:]]$" $contributors }}
@@ -26,12 +30,32 @@
 {{- if eq .type "chicago" -}}
 
   {{/* ------------  CHICAGO ------------ */}}
-  {{ if .page.Params.contributor }}{{ template "page-contributors-chicago" .page }}. {{ end }}{{ if .page.Title }}“{{ partial "page-title.html" .page }}.” {{ else if .page.Params.label }}“{{ .page.Params.label }}.” {{ else }}Untitled. {{ end }}In <em>{{ partial "site-title.html" .page }}</em>, by {{ partial "contributor-list.html" (dict "range" .site.Data.publication.contributor "contributorType" "primary" "listType" "string" "Site" .site) }}. {{ template "publishers-chicago" (dict "site" .site)}}{{ with .site.Data.publication.pub_date }}, {{ dateFormat "2006" . }}{{ end }}. <span class="url-string">{{ if .site.Data.publication.url }}{{ .site.Data.publication.url }}{{ .page.RelPermalink }}{{ else }}{{ .page.Permalink }}{{ end }}</span>.
+  {{ if .page.Params.contributor }}
+  {{ template "page-contributors-chicago" .page }}. 
+  {{ end }}
+  {{ if .page.Title }}
+  “{{ partial "page-title.html" .page }}.” 
+  {{ else if .page.Params.label }}
+  “{{ .page.Params.label }}.” {{ else }}
+  Untitled. 
+  {{ end }}
+  In <em>{{ partial "site-title.html" .page }}</em>. {{ template "publishers-chicago" (dict "site" .site)}}{{ with .site.Data.publication.pub_date }}, {{ dateFormat "2006" . }}{{ end }}. 
+  <span class="url-string">{{ if .site.Data.publication.url }}{{ .site.Data.publication.url }}{{ .page.RelPermalink }}{{ else }}{{ .page.Permalink }}{{ end }}</span>.
 
 {{- else if eq .type "mla" -}}
 
   {{/* ------------  MLA ------------ */}}
-  {{ if .page.Params.contributor }}{{ template "page-contributors-mla" .page }}. {{ end }}{{ if .page.Title }}“{{ partial "page-title.html" .page }}.” {{ else if .page.Params.label }}“{{ .page.Params.label }}.” {{ else }}Untitled. {{ end }}<em>{{ partial "site-title.html" .page }}</em>, by {{ template "publication-contributors-mla" .page }}, {{ template "publishers-mla" (dict "site" .site)}}{{ with .site.Data.publication.pub_date }}, {{ dateFormat "2006" . }}{{ end }}. <span class="url-string">{{ if .site.Data.publication.url }}{{ .site.Data.publication.url }}{{ .page.RelPermalink }}{{ else }}{{ .page.Permalink }}{{ end }}</span>. Accessed <span class="cite-current-date">DD Mon. YYYY</span>.
+  {{ if .page.Params.contributor }}
+  {{ template "page-contributors-mla" .page }}. 
+  {{ end }}
+  {{ if .page.Title }}
+  “{{ partial "page-title.html" .page }}.” 
+  {{ else if .page.Params.label }}
+  “{{ .page.Params.label }}.” 
+  {{ else }}
+  Untitled. 
+  {{ end }}
+  <em>{{ partial "site-title.html" .page }}</em>. {{ template "publishers-mla" (dict "site" .site)}}{{ with .site.Data.publication.pub_date }}, {{ dateFormat "2006" . }}{{ end }}. <span class="url-string">{{ if .site.Data.publication.url }}{{ .site.Data.publication.url }}{{ .page.RelPermalink }}{{ else }}{{ .page.Permalink }}{{ end }}</span>. Accessed <span class="cite-current-date">DD Mon. YYYY</span>.
 
 {{- end -}}
 

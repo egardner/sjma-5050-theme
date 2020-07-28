@@ -28,21 +28,19 @@ import ArtistPage from "./artistPage";
 // array of leaflet instances
 const mapArr = [];
 
-const footnoteOptions = {
-    buttonTemplate: `
-    <button
-        aria-controls="fncontent:<% id %>"
-        aria-expanded="false"
-        aria-label="Footnote <% number %>"
-        class="littlefoot-footnote__button"
-        id="<% reference %>"
-        rel="footnote"
-        title="See Footnote <% number %>"
-    />
-    <% number %>
-    </button>
-    `
-};
+const buttonTemplate = `
+<button
+    aria-controls="fncontent:<% id %>"
+    aria-expanded="false"
+    aria-label="Footnote <% number %>"
+    class="littlefoot-footnote__button"
+    id="<% reference %>"
+    rel="footnote"
+    title="See Footnote <% number %>"
+/>
+<% number %>
+</button>
+`;
 
 /**
  * toggleMenu
@@ -223,11 +221,17 @@ function deepZoomSetup(ele, mapArr) {
  */
 function quickLinksSetup() {
     let links = [...document.getElementsByTagName("a")];
+
     links = links.filter(a => {
         return a.hostname === window.location.hostname;
     });
+
+    let filtered = links.filter( function ( link ) {
+        return !link.href.includes( '.pdf' );
+    } );
+
     quicklink({
-        urls: links,
+        urls: filtered,
         timeout: 4000,
         ignores: [
             /tel:/g,
@@ -283,8 +287,6 @@ function setDate() {
 function toggleCite() {
     let expandables = document.querySelectorAll(".expandable [aria-expanded]");
 
-    console.log( expandables );
-
     for (let i = 0; i < expandables.length; i++) {
         expandables[i].addEventListener("click", event => {
             // Allow these links to bubble up
@@ -337,7 +339,7 @@ function artistPageSetup() {
         // Pass in the functions that need to be re-run on each sub-page change
         new ArtistPage( function () {
             popupSetup( true );
-            littlefoot( footnoteOptions );
+            littlefoot( { buttonTemplate: buttonTemplate } );
         } );
     }
 }
@@ -354,7 +356,7 @@ function pageSetup() {
     popupSetup( true );
     toggleCite();
     artistPageSetup();
-    littlefoot( footnoteOptions );
+    littlefoot( { buttonTemplate: buttonTemplate } );
 }
 
 

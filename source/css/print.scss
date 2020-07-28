@@ -319,6 +319,11 @@ $print-trim: $print-bleed * 2;
                     margin-right: 0;
                 }
             }
+
+            .sjma-artist & {
+                max-width: 90%;
+                margin: 0 auto;
+            }
         }
     }
   
@@ -339,6 +344,7 @@ $print-trim: $print-bleed * 2;
   
     .quire-page__header.hero-image .hero-body {
         margin: 2.5in .5in 0;
+
         @if $print-width <= 7 {
             width: $print-base-text-column-width;
             margin: 2.5in auto 0;

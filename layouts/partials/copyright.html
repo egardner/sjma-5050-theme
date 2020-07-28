@@ -124,27 +124,11 @@
 {{ define "copyright-generator" }}
 
 {{- if eq .Site.Data.publication.license.scope "some-exceptions" -}}
-  Except where otherwise noted, this work is licensed under a
-  {{ with .Site.Data.publication.license.url }}<a rel="license" href="{{ . | relURL }}" target="_blank">{{ end }}
-  {{ .Site.Data.publication.license.name }}
-  {{ with .Site.Data.publication.license.url }}</a>{{ end }}.
-
+  Except where otherwise noted, this work is licensed under a {{ with .Site.Data.publication.license.url }}<a rel="license" href="{{ . | relURL }}" target="_blank">{{ end }}{{ .Site.Data.publication.license.name }}{{ with .Site.Data.publication.license.url }}</a>{{ end }}.
 {{- else if eq .Site.Data.publication.license.scope "text-only" -}}
-  The text of this work is licensed under a
-  {{ with .Site.Data.publication.license.url }}<a rel="license" href="{{ . | relURL }}" target="_blank">{{ end }}
-  {{ .Site.Data.publication.license.name }}
-  {{ with .Site.Data.publication.license.url }}</a>{{ end }}
-  . Unless otherwise noted, all illustrations are excluded from the
-  {{ if .Site.Data.publication.license.abbreviation }}
-  {{ .Site.Data.publication.license.abbreviation }}
-  {{ else }}
-  {{ .Site.Data.publication.license.name }}
-  {{ end }} license.
+  The text of this work is licensed under a {{ with .Site.Data.publication.license.url }}<a rel="license" href="{{ . | relURL }}" target="_blank">{{ end }}{{ .Site.Data.publication.license.name }}{{ with .Site.Data.publication.license.url }}</a>{{ end }}. Unless otherwise noted, all illustrations are excluded from the {{ if .Site.Data.publication.license.abbreviation }} {{ .Site.Data.publication.license.abbreviation }} {{ else }} {{ .Site.Data.publication.license.name }} {{ end }} license.
 {{- else -}}
-  This work is licensed under a
-  {{ with .Site.Data.publication.license.url }}<a rel="license" href="{{ . | relURL }}" target="_blank">{{ end }}
-  {{ .Site.Data.publication.license.name }}
-  {{ with .Site.Data.publication.license.url }}</a>{{ end }}
+  This work is licensed under a {{ with .Site.Data.publication.license.url }}<a rel="license" href="{{ . | relURL }}" target="_blank">{{ end }}{{ .Site.Data.publication.license.name }}{{ with .Site.Data.publication.license.url }}</a>{{ end }}
 {{- end -}}
 <span class="is-print-only">
   To view a copy of this license{{ with .Site.Data.publication.license.url }},

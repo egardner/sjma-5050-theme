@@ -1,0 +1,23 @@
+<p>{{ .Site.Data.publication.copyright | markdownify }}</p>
+
+
+{{ if .Site.Data.publication.license.online_text }}
+	<div class="is-screen-only">
+	{{ .Site.Data.publication.license.online_text | markdownify }}
+	</div>
+{{ else }}
+	<div class="is-screen-only">
+	{{ template "copyright-generator" . }}
+	</div>
+{{ end }}
+
+
+{{ if .Site.Data.publication.license.pdf_ebook_text }}
+	<div class="is-print-only">
+	{{ .Site.Data.publication.license.pdf_ebook_text | markdownify }}
+	</div>
+{{ else }}
+	<div class="is-print-only">
+	{{ template "copyright-generator" . }}
+	</div>
+{{ end }}

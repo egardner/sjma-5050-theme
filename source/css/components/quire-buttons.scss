@@ -12,6 +12,8 @@
   text-align: center;
   padding-bottom: 3em;
   padding-top: 2em;
+  padding-left: 1rem;
+  padding-right: 1rem;
 
   ul {
     display: flex;
@@ -21,7 +23,7 @@
 
   li.quire-nav-button {
     display: inline-block;
-    width: 12em;
+    width: 15em;
     height: 2.9em;
     -moz-border-radius: 2px;
     -webkit-border-radius: 2px;
@@ -33,7 +35,7 @@
     color: button-color($content-background-color);
 
     a {
-      display: inline-block;
+      display: block;
       margin-top: 0;
       padding-top: .6em;
       font-family: $quire-navigation-font;
@@ -43,6 +45,7 @@
     &.prev {
       margin-left: 0;
       margin-right: .55rem;
+
       a {
         color: button-color($secondary-background-color);
         margin-right: .5rem;

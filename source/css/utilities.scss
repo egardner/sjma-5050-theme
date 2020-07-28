@@ -207,11 +207,16 @@ html {
 
 .littlefoot-footnote {
     &__content {
-        * { all: unset; }
-
         *::before {
             content: none !important;
         }
     }
 
+}
+
+.sjma-about-logo {
+  @media print {
+    max-width: 1.5in;
+    height: auto;
+  }
 }

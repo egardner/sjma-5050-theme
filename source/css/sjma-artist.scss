@@ -1,14 +1,27 @@
-#sjma-artist-outlet {
-	scroll-margin: 48px;
-}
-
 .sjma-artist {
+	animation: fadeIn 1s;
+
 	&__header {
+		padding: 2rem 2rem 0 2rem;
+
+		@media screen and (min-width: $desktop ) {
+			padding: 2rem 0 0;
+		}
+
 		&__title {
+			color: $accent-color;
 			line-height: 0.8;
+			font-size: 2.5em;
+			text-align: left;
+
+			@media print {
+				font-size: 3em;
+				text-align: center;
+			}
 		}
 
 		&__info {
+			color: $black;
 			font-weight: normal;
 			font-size: 0.5em;
 		}
@@ -16,15 +29,26 @@
 
 	&__navigation {
 		animation: fadeIn 1s;
-		background-color: #fff;
+		background-color: $black;
+
+		@media screen and (min-width: $tablet) {
+			padding: 3rem 0;
+		}
 	}
 
 	&__grid {
+		background-color: $white;
 		display: grid;
 		grid-gap: 1rem;
-		margin-bottom: 1rem;
 		grid-auto-rows: 150px;
 		grid-template-columns: 1fr 1fr;
+		padding: 1rem;
+
+		@media screen and ( max-width: 600px ) {
+			grid-template-columns: 1fr;
+			grid-auto-rows: 200px;
+			padding: 0rem;
+		}
 
 		@media screen and ( min-width: $tablet ) {
 			// Large portrait image on left; 3 landscape images on right
@@ -55,6 +79,18 @@
 			&.is-type-e {
 				grid-template-columns: repeat(6, 1fr);
 				grid-auto-rows: 350px;
+			}
+
+			// 5-item grid
+			&.is-type-f {
+				grid-template-columns: repeat(5, 1fr);
+				grid-auto-rows: 150px;
+			}
+
+			// 3-item grid
+			&.is-type-g {
+				grid-template-columns: 3fr 2fr;
+				grid-auto-rows: 300px;
 			}
 		}
 	}
@@ -96,18 +132,37 @@
 			.is-type-e &:nth-of-type(5) {
 				grid-column: span 3;
 			}
+
+			.is-type-f & {
+				grid-column: span 2;
+			}
+
+			.is-type-f &:nth-of-type(1) {
+				grid-row: span 4;
+				grid-column: span 3;
+			}
+
+			.is-type-g &:nth-of-type(1) {
+				grid-row: span 2;
+			}
 		}
 
 		figure {
+			background-color: $off-white;
 			height: 100%;
 			width: 100%;
 			pointer-events: none;
+			overflow: hidden;
 		}
 
 		img { 
 			height: 100%;
 			width: 100%;
 			object-fit: cover; 
+		}
+
+		img:-moz-loading {
+			visibility: hidden;
 		}
 
 		&__label {
@@ -123,13 +178,20 @@
 			width: 100%;
 			height: 100%;
 			display: flex;
-			align-items: center;
-			justify-content: center;
+			align-items: flex-end;
+			justify-content: flex-start;
 
 			h6 {
 				font-size: 1.25rem;
 				font-weight: bold;
-				text-align: center;
+				text-align: left;
+			}
+
+			&__icons {
+				img { 
+					width: 24px;
+					height: 24px;
+				}
 			}
 		}
 
@@ -139,6 +201,22 @@
 				opacity: 1;
 			}
 		}
+
+		a:focus {
+			outline: none;
+
+			.sjma-artist__grid-item__label {
+				opacity: 1;
+			}
+		}
+	}
+
+	.quire-page__content .container &__content {
+		padding: 2rem;
+
+		@media screen and (min-width: $desktop ) {
+			padding: 2rem 0;
+		}
 	}
 
 	&__content * {
@@ -146,25 +224,151 @@
 	}
 
 	&__content blockquote {
+		border-left: none;
 		font-size: 1.25em;
-		line-height: 1.3;
+		padding: 0 !important;
+		margin: 0 !important;
 
 		@media screen and ( min-width: $desktop ) {
 			font-size: 1.5em;	
 		}
 
 		@media print {
-			font-size: 1.5rem;
+			margin-top: 0.75in;
+			font-size: 2rem;
+		}
+	}
+
+	&__content cite {
+		color: #666;
+		display: block;
+		font-family: $quire-footnotes-font;
+		font-size: 0.9rem;
+		font-style: normal;
+		line-height: 1.6;
+		padding-top: 1.5rem;
+
+		@media print {
+			color: $print-text-color;
+			margin-top: 0.25in;
+		}
+	}
+
+	#sjma-artist-outlet {
+		scroll-margin: 48px;
+	}
+
+	&__subpage {
+		display: none;
+
+		.container .content { background-color: transparent; }
+
+		// Override for when a blockquote appears inside subpage body text
+		.content blockquote {
+			font-size: initial;
+			border-left: initial;
+		}
+
+		&.is-active {
+			background-color: $off-white;
+			display: block;
+
+			@media screen and (min-width: $tablet ) { }
 		}
 	}
 }
 
 // Overrides for specific artist pages:
+#arneson-arnesonquote .sjma-artist__grid-item:first-of-type img {
+	object-position: 90%;
+}
+
 #baez-baezquote .sjma-artist__grid-item:first-of-type img {
 	object-position: 75%;
 }
 
+#bernhard-bernhardquote .sjma-artist__grid-item:first-of-type img {
+	transform: scale(1.05);
+	object-position: 75%;
+}
+
+#deforest-deforestquote .sjma-artist__grid-item:nth-of-type(3) img {
+	object-position: 0 5%;
+}
+
+#deforest-deforestquote .sjma-artist__grid-item:nth-of-type(4) img {
+	transform: scale(1.05);
+	object-position: 0 5%;
+}
+
+#goldsworthy-goldsworthyquote .sjma-artist__grid-item:first-of-type img {
+	object-position: 35%;
+}
+
+#hall-hallquote .sjma-artist__grid-item:first-of-type img {
+	object-position: 0 25%;
+}
+
+#hatoum-hatoumquote .sjma-artist__grid-item:first-of-type img {
+	transform: scale(1.15);
+}
+
+#levinthal-levinthalquote .sjma-artist__grid-item:first-of-type img {
+	object-position: 70%;
+}
+
+#nevelson-nevelsonquote .sjma-artist__grid-item:first-of-type img {
+	transform: scale(1.15);
+}
+
+#nevelson-nevelsonquote .sjma-artist__grid-item:nth-of-type(2) img {
+	object-position: 0 40%;
+}
+
+#ocampo-ocampoquote .sjma-artist__grid-item:first-of-type img {
+	object-position: 88%;
+}
+
+#oliveira-oliveiraquote .sjma-artist__grid-item:first-of-type img {
+	object-position: 95%;
+}
+
+#oliveira-oliveiraquote .sjma-artist__grid-item:nth-of-type(2) img {
+	object-position: 0 20%;
+}
+
+#oliveira-oliveiraquote .sjma-artist__grid-item:nth-of-type(3) img {
+	object-position: 0 0%;
+}
+
+#oliveira-oliveiraquote .sjma-artist__grid-item:nth-of-type(4) img {
+	object-position: 0 34%;
+}
+
+#rath-rathquote .sjma-artist__grid-item:nth-of-type(3) img {
+	object-position: 0 20%;
+}
+
+#rath-rathquote .sjma-artist__grid-item:nth-of-type(4) img {
+	object-position: 0 10%;
+}
+
+#saar-saarquote .sjma-artist__grid-item:nth-of-type(2) img {
+	object-position: 0 15%;
+}
+
+#tabaimo-tabaimoquote .sjma-artist__grid-item:nth-of-type(1) img {
+	object-position: 0 15%;
+}
+
+#teraoka-teraokaquote .sjma-artist__grid-item:nth-of-type(4) img {
+	transform: scale(1.1);
+}
 
 #villareal-villarealquote .sjma-artist__grid-item:nth-of-type(3) img {
 	object-position: 85%;
+}
+
+#woodman-woodmanquote .sjma-artist__grid-item:nth-of-type(2) img {
+	object-position: 0 0%;
 }

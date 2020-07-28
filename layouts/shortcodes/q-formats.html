@@ -1,0 +1,10 @@
+{{ $otherFormats := where .Site.Data.publication.resource_link "type" "other-format" }}
+{{ if gt (len $otherFormats) 0 -}}
+<ul>
+  {{ range $otherFormats }}
+  <li>
+    <a href="{{ if .url }}{{ printf "%s" .url | relURL }}{{ else }}#{{end}}" target="_blank" {{ with .link_relation }}rel="{{ . }}"{{ end }} {{ with .media_type }}type="{{ . }}"{{ end }}>{{ .name }}</a>
+  </li>
+  {{ end }}
+</ul>
+{{ end -}}

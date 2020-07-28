@@ -1,0 +1,7 @@
+<ul>
+{{ range $.Site.Data.publication.revision_history }}
+	<li>
+		<strong>{{ .date }}</strong>: {{ .summary }}
+	</li>
+{{ end }}
+</ul>

@@ -6,7 +6,7 @@
 {{- $imgDir := $.Scratch.Get "imageDir" -}}
 
 <div class="quire-navbar">
-  <a href="#main" class="quire-navbar-skip-link" tabindex="1">
+  <a href="#main" class="quire-navbar-skip-link" tabindex="0">
     Skip to Main Content
   </a>
 
@@ -16,6 +16,7 @@
               aria-controls="quire-search"
               onclick="toggleSearch()">
         <svg class="remove-from-epub">
+          <desc>Search</desc>
           <switch>
             <use xlink:href="#search-icon"></use>
             <foreignObject width="32" height="32">
@@ -43,8 +44,9 @@
               onclick="toggleMenu()"
               aria-expanded="true"
               aria-controls="quire-menu"
-              tabindex="2" >
+              tabindex="0" >
         <svg class="remove-from-epub">
+          <desc>Menu</desc>
           <switch>
             <use xlink:href="#nav-icon"></use>
             <foreignObject width="32" height="32">

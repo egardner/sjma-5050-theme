@@ -151,7 +151,6 @@
       .list-header {
         font-size: 1.375em;
         padding: .5em 0;
-        font-family: $quire-headings-font;
         color: background-color-text($secondary-background-color);
         @media print {
           font-size: $print-base-font-size;
@@ -174,10 +173,15 @@
       transition: all .25s ease;
 
       .arrow {
+        display: none;
         position: absolute;
         fill: background-color-text($secondary-background-color);
-        margin-top: .1em;
+
+        @media screen and (min-width: $tablet) {
+          display: inline-block;
+        }
       }
+
       &:hover {
         background-color: inherit;
         color: link-hover-color($secondary-background-color);

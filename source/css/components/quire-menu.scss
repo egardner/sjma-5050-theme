@@ -21,7 +21,7 @@
 // .quire-menu
 // -----------------------------------------------------------------------------
 .quire-menu {
-  font-family: $quire-primary-font;
+  font-family: $quire-navigation-font;
   line-height: 1.25;
 
   &__header {
@@ -135,7 +135,7 @@
 
   .page-item, .section-item {
     a {
-      font-family: $quire-primary-font;
+
       &.active {
         margin-left: -1.25em;
         border-left: 4px solid $accent-color;

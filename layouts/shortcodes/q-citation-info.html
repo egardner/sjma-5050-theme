@@ -1,0 +1,12 @@
+<p>
+	<strong>Chicago</strong><br/>
+	<em>{{ partial "site-title.html" .Page }}</em>. 
+	{{ template "publishers-chicago" (dict "site" $.Site )}}{{ with $.Site.Data.publication.pub_date }}, {{ dateFormat "2006" . }}{{ end }}. 
+</p>
+
+
+<p>
+	<strong>MLA</strong><br/>
+	<em>{{ partial "site-title.html" .Page }}</em>. 
+	{{ template "publishers-mla" (dict "site" $.Site)}}{{ with $.Site.Data.publication.pub_date }}, {{ dateFormat "2006" . }}{{ end }}. 
+</p>

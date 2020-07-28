@@ -17,9 +17,13 @@
 
     &__hero {
         background-color: $quire-cover-color;
-        height: calc( 100vh - #{$navbar-height} );
+        height: calc( 75vh - #{$navbar-height} );
         align-items: center;
         justify-content: center;
+
+        @media screen and ( min-width: $tablet ) {
+            height: 82vh;
+        }
 
         @media print {
             height: 100%;
@@ -34,7 +38,11 @@
 		animation: fadeIn 2s;
         animation-fill-mode: backwards;
         animation-delay: 0.5s;
-        width: 300px;
+        width: 200px;
+
+        @media screen and ( min-width: $tablet ) {
+            width: 300px;
+        }
     }
 
     .subtitle {
@@ -43,8 +51,12 @@
         animation-delay: 2s;
         color: #e4aa59ff;
         display: inline-block;
-        font-size: 2rem;
+        font-size: 1.5rem;
         max-width: 30rem;
+
+        @media screen and ( min-width: $tablet ) {
+            font-size: 2rem;
+        }
     }
 
     .reading-line {
@@ -53,7 +65,11 @@
         animation-delay: 4s;
         color: $white;
         font-size: 1.35rem;
-        margin-top: 4rem;
+        margin-top: 2rem;
+
+        @media screen and ( min-width: $tablet ) {
+            margin-top: 4rem;
+        }
     }
 }
 

@@ -120,7 +120,8 @@
     }
     a, button, .button {
       transition: all .25s ease;
-      &:hover {
+      &:hover,
+      &:focus {
         color: findColorInvert($accent-color) !important;
         background-color: $accent-color;
         svg {
