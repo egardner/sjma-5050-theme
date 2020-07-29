@@ -25,3 +25,7 @@
   {{- partial "open-graph.html" . -}}
   {{- partial "twitter-card.html" . -}}
   {{- partial "json-ld.html" . -}}
+
+  {{ if eq .Params.class "artist-page" }}
+  <meta name="robots" content="noindex" /> 
+  {{ end }}
