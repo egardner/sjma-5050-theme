@@ -1,0 +1,79 @@
+.sjma-artist-toc-grid {
+	display: grid;
+	gap: 1rem;
+	grid-auto-rows: 50px;
+	grid-template-columns: 1fr 1fr 1fr 1fr;
+	margin: 0 auto;
+	max-width: 1200px;
+	padding: 1rem;
+
+	&__item {
+		animation: fadeIn 1.5s;
+		animation-fill-mode: backwards;
+		grid-column: span 2;
+		grid-row: span 4;
+		overflow: hidden;
+		position: relative;
+
+		@media screen and ( min-width: $desktop ) {
+			grid-row: span 4;
+			grid-column: span 1;
+		}
+
+		&__label {
+			align-items: center;
+			background-color: rgba(0,0,0, 0.65);
+			color: #fff;
+			display: flex;
+			height: 100%;
+			justify-content: center;
+			left: 0;
+			opacity: 0;
+			padding: 1rem;
+			position: absolute;
+			top: 0;
+			transition: opacity linear 0.2s; 
+			width: 100%;
+			z-index: 1;
+		}
+
+		&__title {
+			font-size: 1.5rem;
+		}
+
+		&__image {
+			object-fit: cover;
+			width: 100%;
+			height: 100%;
+			transition: transform linear 0.2s;
+		}
+
+		&:hover,
+		&:focus {
+			.sjma-artist-toc-grid__item__label {
+				opacity: 1;
+			}
+
+			.sjma-artist-toc-grid__item__title {
+				color: #fff;
+			}
+
+			.sjma-artist-toc-grid__item__image {
+				transform: scale( 1.1 );
+			}
+		}
+
+		// Artist-specific overrides
+		&:nth-of-type(21) img { object-position: 0 20%; }
+		&:nth-of-type(34) img { object-position: 100%; }
+		&:nth-of-type(35) img { object-position: 100%; }
+		&:nth-of-type(43) img { object-position: 0 0%; }
+		&:nth-of-type(46) img { object-position: 100%; }
+
+		// Staggered fade in effect
+		@for $i from 1 to 50 {
+			&:nth-of-type( #{$i}) { animation-delay: ( $i * 0.1s ); }
+		}
+	}
+
+}
