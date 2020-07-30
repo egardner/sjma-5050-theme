@@ -432,6 +432,13 @@ $print-trim: $print-bleed * 2;
             }
         }
     }
+
+    .quire-page--artist-page .q-figure__wrapper {
+        img {
+            max-height: 6.5in;
+            object-fit: contain;
+        }
+    }
   
     // Improve page and line breaks
     // -----------------------------------------------------------------------------
@@ -511,6 +518,10 @@ $print-trim: $print-bleed * 2;
         .lvml {
             display: none !important;
         }
+    }
+
+    .quire-figure .q-figure__wrapper span.fig {
+        display: none;
     }
 
 // Title Page and Half Title Page
